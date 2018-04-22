@@ -27,21 +27,30 @@ public class PopularTabela {
         // Busca o nome das colunas
         Vector<String> nomeColunas = new Vector<>();
         int countColunas = dados.getColumnCount();
-        for (int column = 1; column <= countColunas; column++) {
-            nomeColunas.add(dados.getColumnName(column));
-        }
+           
+        nomeColunas.add("Imagem");
+        nomeColunas.add("Nome");
+        nomeColunas.add("Preço");
 
         // Busca os dados da tabela
         Vector<Vector<Object>> data = new Vector<>();
         while (rs.next()) {
             Vector<Object> vector = new Vector<>();
             for (int columnIndex = 1; columnIndex <= countColunas; columnIndex++) {
-                vector.add(rs.getObject(columnIndex));
+                //Não mostra na tabela o ID
+                if(columnIndex != 1)
+                   vector.add(rs.getObject(columnIndex));
             }
             data.add(vector);
         }
 
-        return new DefaultTableModel(data, nomeColunas);
+        return new DefaultTableModel(data, nomeColunas){
+                //seta que a primeira coluna não será editável
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    if(columnIndex != 0) return true;
+                return false;
+            }
+        };
 
     }
 }

@@ -7,6 +7,7 @@ package produto.view;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import produto.controller.ProdutoController;
 
 /**

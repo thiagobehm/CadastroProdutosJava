@@ -48,7 +48,7 @@ public class ProdutoDAO extends BaseConnection implements Persistence<Produto>{
         Connection connection;
         PreparedStatement statement;
         ResultSet rs = null;
-        String sql = "SELECT imagem, nome, preco FROM cadastro_produtos.produto";
+        String sql = "SELECT id, imagem, nome, preco FROM cadastro_produtos.produto";
         
         try {
             connection = super.getConnection();

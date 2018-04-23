@@ -4,8 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Thiago/Documents/NetBeansProjects/Produto/src/produto/view/Cadastro.java</file>
-            <file>file:/C:/Users/Thiago/Documents/NetBeansProjects/Produto/src/produto/view/NovoProduto.java</file>
-            <file>file:/C:/Users/Thiago/Documents/NetBeansProjects/Produto/src/controller/ProdutoController.java</file>
+            <file>file:/C:/Users/Thiago/Documents/NetBeansProjects/Produto/src/produto/utils/PopularTabela.java</file>
+            <file>file:/C:/Users/Thiago/Documents/NetBeansProjects/Produto/src/produto/persistence/ProdutoDAO.java</file>
+            <file>file:/C:/Users/Thiago/Documents/NetBeansProjects/Produto/src/produto/controller/ProdutoController.java</file>
         </group>
     </open-files>
 </project-private>

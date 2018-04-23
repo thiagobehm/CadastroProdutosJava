@@ -114,6 +114,7 @@ public class ManipularImagem {
             try {
                 BufferedImage imagem = ImageIO.read(input);
                 label.setIcon(new ImageIcon(imagem));
+                label.setVisible(true);
             } catch (IOException ex) {
             }
 

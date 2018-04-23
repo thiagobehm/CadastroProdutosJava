@@ -5,9 +5,6 @@
  */
 package produto.view;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import produto.controller.ProdutoController;
 
 /**
@@ -32,6 +29,15 @@ public class Cadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("cadastro_produtos?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        produtoQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produto p");
+        produtoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery.getResultList();
+        produtoQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produto p");
+        produtoList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery1.getResultList();
+        produtoQuery3 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produto p");
+        produtoList3 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery3.getResultList();
+        produtoQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produto p");
+        produtoList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery2.getResultList();
         main_panel = new javax.swing.JPanel();
         btn_Novo_Produto = new javax.swing.JButton();
         table_scroll = new javax.swing.JScrollPane();
@@ -88,7 +94,6 @@ public class Cadastro extends javax.swing.JFrame {
         NovoProduto dialog = NovoProduto.getInstance();
         dialog.setAlwaysOnTop(true);
         dialog.setVisible(true);
-        
     }//GEN-LAST:event_btn_Novo_ProdutoMouseClicked
     
     /*
@@ -141,7 +146,16 @@ public class Cadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Novo_Produto;
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JPanel main_panel;
+    private java.util.List<produto.view.Produto> produtoList;
+    private java.util.List<produto.view.Produto> produtoList1;
+    private java.util.List<produto.view.Produto> produtoList2;
+    private java.util.List<produto.view.Produto> produtoList3;
+    private javax.persistence.Query produtoQuery;
+    private javax.persistence.Query produtoQuery1;
+    private javax.persistence.Query produtoQuery2;
+    private javax.persistence.Query produtoQuery3;
     private javax.swing.JTable tabela_produtos;
     private javax.swing.JScrollPane table_scroll;
     // End of variables declaration//GEN-END:variables

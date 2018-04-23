@@ -6,6 +6,7 @@
 package produto.model;
 
 import java.math.BigDecimal;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,13 +21,15 @@ public class Produto {
     private Integer id;
     
     public Produto() {}
-  
+    
     public Produto(String nomeProduto, BigDecimal preco, byte[] imagem) {
         this.nomeProduto = nomeProduto;
         this.preco = preco;
         this.imagem = imagem;
     }
-    
+    public ImageIcon renderImagem() {
+        return new ImageIcon(this.imagem);
+    }
     public Integer getId() {
         return id;
     }
@@ -53,7 +56,7 @@ public class Produto {
     public byte[] getImagem() {
         return imagem;
     }
-
+ 
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }

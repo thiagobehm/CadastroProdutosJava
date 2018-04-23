@@ -5,7 +5,6 @@
  */
 package produto.controller;
 
-import java.io.File;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -57,14 +56,16 @@ public class ProdutoController{
     }
     
     public void listarProdutos(JTable table) throws Exception {
+        List<Produto> produtos = new ArrayList();
         ProdutoDAO dao = new ProdutoDAO();
-        ResultSet result = null;
+        ResultSet rs;
         DefaultTableModel model;
         
         try{
-            result = dao.getDados();
-            model = PopularTabela.atualizarTabela(result);
+            rs = dao.getDados();
+            model = PopularTabela.atualizarTabela(rs, produtos);
             table.setModel(model);
+            System.out.print(produtos.size());
         }catch(Exception e) {
             throw new Exception("Falha de comunicação com o banco de dados!");
         }

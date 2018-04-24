@@ -28,6 +28,7 @@ public class Cadastro extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("cadastro_produtos?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         produtoQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produto p");
@@ -38,6 +39,8 @@ public class Cadastro extends javax.swing.JFrame {
         produtoList3 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery3.getResultList();
         produtoQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produto p");
         produtoList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery2.getResultList();
+        produtoQuery4 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Produto p");
+        produtoList4 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery4.getResultList();
         main_panel = new javax.swing.JPanel();
         btn_Novo_Produto = new javax.swing.JButton();
         table_scroll = new javax.swing.JScrollPane();
@@ -64,14 +67,21 @@ public class Cadastro extends javax.swing.JFrame {
         });
         main_panel.add(btn_Novo_Produto, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
 
-        tabela_produtos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        tabela_produtos.setRowHeight(120);
 
-            },
-            new String [] {
-
-            }
-        ));
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, produtoList4, tabela_produtos);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${imagem}"));
+        columnBinding.setColumnName("Imagem");
+        columnBinding.setColumnClass(javax.swing.ImageIcon.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${preco}"));
+        columnBinding.setColumnName("Preco");
+        columnBinding.setColumnClass(java.math.BigDecimal.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         table_scroll.setViewportView(tabela_produtos);
 
         main_panel.add(table_scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 620, 260));
@@ -86,6 +96,8 @@ public class Cadastro extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(main_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -152,11 +164,14 @@ public class Cadastro extends javax.swing.JFrame {
     private java.util.List<produto.view.Produto> produtoList1;
     private java.util.List<produto.view.Produto> produtoList2;
     private java.util.List<produto.view.Produto> produtoList3;
+    private java.util.List<produto.view.Produto> produtoList4;
     private javax.persistence.Query produtoQuery;
     private javax.persistence.Query produtoQuery1;
     private javax.persistence.Query produtoQuery2;
     private javax.persistence.Query produtoQuery3;
+    private javax.persistence.Query produtoQuery4;
     private javax.swing.JTable tabela_produtos;
     private javax.swing.JScrollPane table_scroll;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

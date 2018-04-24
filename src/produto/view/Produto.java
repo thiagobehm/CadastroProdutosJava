@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -49,7 +50,6 @@ public class Produto implements Serializable {
     @Lob
     @Column(name = "imagem")
     private byte[] imagem;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "preco")
     private BigDecimal preco;
@@ -87,8 +87,8 @@ public class Produto implements Serializable {
         changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
-    public byte[] getImagem() {
-        return imagem;
+    public ImageIcon getImagem() {
+        return new ImageIcon(this.imagem);
     }
 
     public void setImagem(byte[] imagem) {
@@ -132,12 +132,4 @@ public class Produto implements Serializable {
         return "produto.view.Produto[ id=" + id + " ]";
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
-    }
-    
 }

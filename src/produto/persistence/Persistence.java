@@ -5,7 +5,7 @@
  */
 package produto.persistence;
 
-import java.sql.ResultSet;
+import java.util.List;
 
 /**
  *
@@ -13,6 +13,6 @@ import java.sql.ResultSet;
  */
 public interface Persistence<T> {
     public void gravarDados(T Object);
-    public ResultSet getDados();
+    public List<T> getDados();
     public void updateDados(T Object);
 }

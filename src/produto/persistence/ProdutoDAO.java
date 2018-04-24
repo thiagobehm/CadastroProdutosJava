@@ -46,10 +46,12 @@ public class ProdutoDAO extends BaseConnection implements Persistence<Produto>{
     }
 
     @Override
-    public ResultSet getDados() {
+    public List<Produto> getDados() {
         Connection connection;
         PreparedStatement statement;
-        ResultSet rs = null;
+        Produto produto = new Produto();
+        List<Produto> produtos = new ArrayList<>();
+        ResultSet rs;
         String sql = "SELECT id, imagem, nome, preco FROM cadastro_produtos.produto";
 
         
@@ -57,10 +59,19 @@ public class ProdutoDAO extends BaseConnection implements Persistence<Produto>{
             connection = super.getConnection();
             statement = connection.prepareStatement(sql);
             rs = statement.executeQuery();    
+             
+        while(rs.next()) {
+            produto.setId(rs.getInt("id"));
+            produto.setNomeProduto(rs.getString("nome"));
+            produto.setPreco(rs.getBigDecimal("preco"));
+            produto.setImagem(rs.getBytes("imagem"));
+            
+            produtos.add(produto);
+        }
         } catch (Exception ex) {
            System.out.print(ex.getMessage());
         } 
-        return rs;
+        return produtos;
     }
 
     @Override

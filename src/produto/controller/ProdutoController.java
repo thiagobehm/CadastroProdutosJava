@@ -6,15 +6,12 @@
 package produto.controller;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import produto.model.Produto;
 import produto.model.validator.ValidarProduto;
 import produto.persistence.ProdutoDAO;
-import produto.utils.PopularTabela;
 
 /**
  *
@@ -58,13 +55,9 @@ public class ProdutoController{
     public void listarProdutos(JTable table) throws Exception {
         List<Produto> produtos = new ArrayList();
         ProdutoDAO dao = new ProdutoDAO();
-        ResultSet rs;
-        DefaultTableModel model;
         
         try{
-            rs = dao.getDados();
-            model = PopularTabela.atualizarTabela(rs, produtos);
-            table.setModel(model);
+            produtos = dao.getDados();
             System.out.print(produtos.size());
         }catch(Exception e) {
             throw new Exception("Falha de comunicação com o banco de dados!");

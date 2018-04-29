@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public abstract class Validator {
     public static Boolean validarNome(String nome) {
         //Nome precisa ter mais que três caracteres
-        if(nome == null || nome.length() > 60){
+        if(nome.equals("") || nome.length() > 60){
             return false;
         }
         return true;

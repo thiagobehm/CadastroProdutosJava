@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -36,7 +38,7 @@ public class ProdutoDAO extends BaseConnection implements Persistence<Produto>{
             //seta os parametros para a query
             statement.setString(1, produto.getNomeProduto());
             statement.setBigDecimal(2, produto.getPreco());
-            //statement.setBytes(3, produto.getImagem().);
+            statement.setBytes(3, produto.getImagem());
 
             statement.executeUpdate();
         } catch (Exception ex) {
@@ -44,12 +46,11 @@ public class ProdutoDAO extends BaseConnection implements Persistence<Produto>{
         } 
         
     }
-
     @Override
     public List<Produto> getDados() {
         Connection connection;
         PreparedStatement statement;
-        Produto produto = new Produto();
+        Produto produto = null;
         List<Produto> produtos = new ArrayList<>();
         ResultSet rs;
         String sql = "SELECT id, imagem, nome, preco FROM cadastro_produtos.produto";
@@ -61,6 +62,7 @@ public class ProdutoDAO extends BaseConnection implements Persistence<Produto>{
             rs = statement.executeQuery();    
              
         while(rs.next()) {
+            produto = new Produto();
             produto.setId(rs.getInt("id"));
             produto.setNomeProduto(rs.getString("nome"));
             produto.setPreco(rs.getBigDecimal("preco"));
@@ -68,9 +70,11 @@ public class ProdutoDAO extends BaseConnection implements Persistence<Produto>{
             
             produtos.add(produto);
         }
+       
         } catch (Exception ex) {
            System.out.print(ex.getMessage());
         } 
+    
         return produtos;
     }
 

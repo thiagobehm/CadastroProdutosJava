@@ -9,9 +9,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import produto.model.Produto;
 import produto.model.validator.ValidarProduto;
 import produto.persistence.ProdutoDAO;
+import produto.utils.PopularTabela;
 
 /**
  *
@@ -28,7 +30,7 @@ public class ProdutoController{
     }
     
     /*
-    * Valida os campos fornecidos e caso valide grava no banco
+    * Valida os campos fornecidos 
     */
     public Boolean validarDados() throws Exception {
         
@@ -52,17 +54,20 @@ public class ProdutoController{
         }
     }
     
-    public void listarProdutos(JTable table) throws Exception {
+    public void listarProdutos(JTable tabela) throws Exception {
         List<Produto> produtos = new ArrayList();
         ProdutoDAO dao = new ProdutoDAO();
-        
+        PopularTabela model;
         try{
-            produtos = dao.getDados();
-            System.out.print(produtos.size());
+            //busca os dados no banco
+            produtos = dao.getDados();            
+            model = new PopularTabela();
+            //seta os itens na nova model
+            model.setItems(produtos);
+            tabela.setModel(model);                       
         }catch(Exception e) {
             throw new Exception("Falha de comunicação com o banco de dados!");
         }
     }
-    
     
 }

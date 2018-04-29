@@ -60,8 +60,4 @@ public class Produto {
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
-
-
-    
-    
 }
